@@ -8,7 +8,8 @@ CREATE TABLE [dbo].[Customer](
 	[PhoneNumber] [nvarchar](256) NOT NULL,
 	[CNIC] [nvarchar](256) NOT NULL,
 	[RoleId] [int] NOT NULL,
-	[ImagePath] [nvarchar](MAX) NULL
+	[ImagePath] [nvarchar](MAX) NULL,
+	[Theme] [nvarchar](MAX) NULL
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
