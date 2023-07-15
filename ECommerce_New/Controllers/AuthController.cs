@@ -2,6 +2,7 @@
 using ECommerce_New.Models;
 using ECommerce_New.ModelClasses;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using ECommerce_New.LogicLayer;
 
 namespace ECommerce_New.Controllers
 {
@@ -58,6 +59,9 @@ namespace ECommerce_New.Controllers
                 co.Expires = DateTime.Now.AddDays(1);
                 Response.Cookies.Append("AuthenticatedCustomer", customer.Id.ToString());
 
+                SmallData.CustomerName = customer.FirstName + " " + customer.LastName;
+                SmallData.CustomerIcon = customer.ImagePath;
+
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -70,6 +74,9 @@ namespace ECommerce_New.Controllers
         public IActionResult LogOut()
         {
             Response.Cookies.Delete("AuthenticatedCustomer");
+
+            SmallData.CustomerName = "";
+
             return RedirectToAction("Login");
         }
     }

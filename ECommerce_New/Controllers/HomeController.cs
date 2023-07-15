@@ -22,8 +22,6 @@ namespace ECommerce_New.Controllers
                 return RedirectToAction("Login", "Auth");
             }
 
-            ViewData["CustomerName"] = "";
-
             return View();
         }
 
