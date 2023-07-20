@@ -62,7 +62,17 @@ namespace ECommerce_New.Controllers
                 SmallData.CustomerName = customer.FirstName + " " + customer.LastName;
                 SmallData.CustomerIcon = customer.ImagePath;
 
-                return RedirectToAction("Index", "Home");
+                var role = _context.Roles.Where(x => x.Id == customer.RoleId).FirstOrDefault();
+                if (role != null && role.Name == "Admin")
+                {
+                    Response.Cookies.Append("LoginType", "Admin");
+                    return RedirectToAction("AdminDashboard", "Home");
+                }
+                else
+                {
+                    Response.Cookies.Append("LoginType", "Customer");
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {

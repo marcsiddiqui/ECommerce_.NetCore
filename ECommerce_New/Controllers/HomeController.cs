@@ -15,13 +15,15 @@ namespace ECommerce_New.Controllers
         }
 
         [LogInOnly]
+        [AdminOnly]
+        public IActionResult AdminDashboard()
+        {
+            return View();
+        }
+
+        [LogInOnly]
         public IActionResult Index()
         {
-            if ((Request.Cookies["AuthenticatedCustomer"] != null ? Convert.ToInt32(Request.Cookies["AuthenticatedCustomer"]) : 0) <= 0)
-            {
-                return RedirectToAction("Login", "Auth");
-            }
-
             return View();
         }
 
